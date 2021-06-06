@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import * as React from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import { Title, TextInput, Button } from "react-native-paper";
@@ -19,6 +20,7 @@ const styles = StyleSheet.create({
   });
 
 export const SignUpScreen = () => {
+  const navigation =useNavigation();
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
   
@@ -46,13 +48,13 @@ export const SignUpScreen = () => {
             style={[styles.paddingSm, styles.marginBottom]}
             onPress={() => {}} // TODO: 仮の値を入れている
           >
-            ログイン
+            新規登録
           </Button>
           <Button
             style={[styles.paddingSm, styles.marginBottom]}
-            onPress={() => {}} // TODO: 仮の値を入れている
+            onPress={() => {navigation.navigate("Login")}} // TODO: 仮の値を入れている
           >
-            アカウントを作成する
+            既存のアカウントでログインする
           </Button>
         </View>
       </SafeAreaView>
