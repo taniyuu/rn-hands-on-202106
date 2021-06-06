@@ -1,7 +1,6 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { KeyboardAvoidingView, Platform, StyleSheet, Text, View } from 'react-native';
-import { GiftedChat } from "react-native-gifted-chat";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from 'react-native';
+import { GiftedChat,IMessage } from "react-native-gifted-chat";
 
 const styles = StyleSheet.create({
   container: { flex: 1 },
@@ -9,7 +8,7 @@ const styles = StyleSheet.create({
 
 export const ChatScreen=()=> {
   // 表示するチャットメッセージの配列
-  const [messages, setMessages] = React.useState<TMessage[]>([]);
+  const [messages, setMessages] = React.useState<IMessage[]>([]);
 
   React.useEffect(() => {
     setMessages([
