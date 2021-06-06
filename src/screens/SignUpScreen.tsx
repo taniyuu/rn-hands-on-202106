@@ -3,6 +3,7 @@ import * as React from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import { Title, TextInput, Button } from "react-native-paper";
 
+import { auth } from "../../firebase";
 
 const styles = StyleSheet.create({
     flex: {
@@ -24,6 +25,17 @@ export const SignUpScreen = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
   
+const signUp=()=>{
+  auth
+  .createUserWithEmailAndPassword(email, password)
+  .then(() => {
+    console.log("Register Success!");
+  })
+  .catch((error) => {
+    console.error(error.message);
+  });
+}
+
     return (
       <SafeAreaView style={styles.flex}>
         <View style={[styles.flex, styles.paddingLarge]}>
@@ -46,7 +58,7 @@ export const SignUpScreen = () => {
           <Button
             mode="contained"
             style={[styles.paddingSm, styles.marginBottom]}
-            onPress={() => {}} // TODO: 仮の値を入れている
+            onPress={signUp} // TODO: 仮の値を入れている
           >
             新規登録
           </Button>

@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/core";
 import * as React from "react";
 import { View, StyleSheet, SafeAreaView } from "react-native";
 import { Title, TextInput, Button } from "react-native-paper";
-
+import { auth } from "../../firebase";
 
 const styles = StyleSheet.create({
     flex: {
@@ -24,6 +24,17 @@ export const LoginScreen = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
   
+    const signin = () => {
+        auth
+          .signInWithEmailAndPassword(email, password)
+          .then(() => {
+            console.log("Signin Success!");
+          })
+          .catch((error) => {
+            console.error(error.message);
+          });
+      };
+
     return (
       <SafeAreaView style={styles.flex}>
         <View style={[styles.flex, styles.paddingLarge]}>
@@ -46,13 +57,13 @@ export const LoginScreen = () => {
           <Button
             mode="contained"
             style={[styles.paddingSm, styles.marginBottom]}
-            onPress={() => {}} // TODO: 仮の値を入れている
+            onPress={signin} 
           >
             ログイン
           </Button>
           <Button
             style={[styles.paddingSm, styles.marginBottom]}
-            onPress={() => {navigation.navigate("SignUp")}} // TODO: 仮の値を入れている
+            onPress={() => {navigation.navigate("SignUp")}}
           >
             アカウントを作成する
           </Button>
