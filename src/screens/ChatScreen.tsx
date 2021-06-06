@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
 
 export const ChatScreen=()=> {
   // 表示するチャットメッセージの配列
-  const [messages, setMessages] = React.useState([]);
+  const [messages, setMessages] = React.useState<TMessage[]>([]);
 
   React.useEffect(() => {
     setMessages([
